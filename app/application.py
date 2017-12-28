@@ -3,8 +3,7 @@
 from __future__ import unicode_literals, absolute_import
 
 from flask import request
-from wechatpy.replies import TextReply
-from wechatpy.replies import create_reply
+from wechatpy.replies import EmptyReply
 
 from whisper.app.factory import AppFactory
 from whisper.config import Config
@@ -18,12 +17,12 @@ app = AppFactory(__name__, Config)
 def wechat_handler():
 
     msg = request.wechat_msg
+    from whisper.app.secret.chat import Chat
 
-    if msg.type == 'text':
-        reply = create_reply(msg.content, message=msg)
-    else:
-        reply = TextReply(content='hello', message=msg)
+    chatbot = Chat(msg=msg)
+    chatbot.execute(**chatbot.kwargs)
 
+    reply = EmptyReply()
     return reply
 
 

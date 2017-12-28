@@ -5,6 +5,9 @@ from __future__ import unicode_literals, absolute_import
 from flask import Flask
 
 from whisper.ext.wechat import wechat
+from whisper.ext.celery import celery_ext
+from whisper.ext.breeze import breeze
+from whisper.ext.robot import chatbot
 
 __all__ = ["AppFactory"]
 
@@ -50,11 +53,14 @@ class AppFactory(Flask):
     @staticmethod
     def configure_extensions(app):
         wechat.init_app(app)
-        pass
+        celery_ext.init_app(app)
+        breeze.init_app(app)
+        chatbot.init_app(app)
         # api.init_app(app)
         # chat.init_app(app)
         # ldap_cli.init_app(app)
         # redis.init_app(app)
+        pass
 
     @staticmethod
     def configure_environment():
