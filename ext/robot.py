@@ -29,7 +29,7 @@ class ChatBotExt(object):
                 },
                 {
                     'import_path': 'chatterbot.logic.LowConfidenceAdapter',
-                    'threshold': 0.43,
+                    'threshold': 0.001,
                     'default_response': '我不明白你的意思....'
                 }
             ],
