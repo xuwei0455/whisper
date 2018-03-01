@@ -8,6 +8,7 @@ from whisper.ext.wechat import wechat
 from whisper.ext.celery import celery_ext
 from whisper.ext.breeze import breeze
 from whisper.ext.robot import chatbot
+from whisper.ext.db import db
 
 __all__ = ["AppFactory"]
 
@@ -56,6 +57,7 @@ class AppFactory(Flask):
         celery_ext.init_app(app)
         breeze.init_app(app)
         chatbot.init_app(app)
+        db.init_app(app)
         # api.init_app(app)
         # chat.init_app(app)
         # ldap_cli.init_app(app)

@@ -32,4 +32,5 @@ class CeleryExt(object):
     def __getattr__(self, name):
         return getattr(self._celery_client, name)
 
+
 celery_ext = CeleryExt()
